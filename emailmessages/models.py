@@ -12,20 +12,26 @@ class Sender(models.Model):
     password                =       models.CharField(max_length=128)
     provider                =       models.ForeignKey(Provider)
 
-class Message(models.Model):
+
+class Reminder(models.Model):
+    #32 Kb of text should be enough for anyone ;)
+    text                    =       models.TextField(max_length=32768)
+    final_date              =       models.DateField()
     
-    #Signals when the mail sender can start to send this message. When
+    
+class EmailMessage(models.Model):
+    
+    #Signals when the mail sender must send this message. When
     #this date arrive the mailer is allowed to send this email. The
-    #date is not exact!! .It depends on whether the mailer runs hourly
-    #or daily
-    starting_date           =       models.DateTimeField()
+    #date is not exact!! 
+    date           =       models.DateTimeField()
     
     
     
     #Who is going to receive this message?
     to                      =       models.CharField(max_length=128)
     subject                 =       models.CharField(max_length=256)
-    #32 Kb of text should be enough for anyone ;)
-    text                    =       models.TextField(max_length=32768)
+    reminder                =       models.ForeignKey ( Reminder )
+    
     
     
