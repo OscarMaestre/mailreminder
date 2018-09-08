@@ -1,5 +1,11 @@
 {%extends 'emailmessages/base.html'%}
 
 {%block contenido%}
-<h1> Hola mundo </h1>
+<h1> Bienvenido </h1>
+Ahora puedes:
+
+<ul>
+    <li><a href="{% url 'create_reminder' %}">Crear un recordatorio</a></li>
+    <li>Consultar los recordatorios pendientes</li>
+</ul>
 {%endblock%}
